@@ -53,8 +53,11 @@ public class ProjectController {
 	@PostMapping("/projects")
 	public ResponseEntity<Project> createProject(@RequestBody Project project1) {
 		try {
+
 			Project project = projectRepository
-					.save(new Project(project1.getTitle(), project1.getDescription(), false));
+					.save(project1);
+			System.out.println(project
+			);
 			return new ResponseEntity<>(project, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
